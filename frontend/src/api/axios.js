@@ -45,6 +45,7 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    console.error("API Request Failed:", error);
     const status = error?.response?.status;
     const requestUrl = error?.config?.url || "";
     const isAuthRequest = requestUrl.includes("/auth/login") || requestUrl.includes("/auth/register");
@@ -56,6 +57,8 @@ api.interceptors.response.use(
       toast.error("Server is unavailable. Please try again.");
     } else if (!error?.response) {
       toast.error("No connection to server.");
+    } else {
+      toast.error(error?.response?.data?.message || "Something went wrong. Please try again later.");
     }
 
     return Promise.reject(error);
