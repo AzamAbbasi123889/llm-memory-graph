@@ -3,7 +3,10 @@ import toast from "react-hot-toast";
 import useAuthStore from "../store/authStore";
 
 const api = Axios.create({
-  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api"
+  baseURL: `${import.meta.env.VITE_API_URL}/api`,
+  headers: {
+    "Content-Type": "application/json"
+  }
 });
 
 export const getFriendlyErrorMessage = (error, fallback = "Something went wrong.") => {
