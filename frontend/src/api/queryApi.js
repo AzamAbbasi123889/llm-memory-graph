@@ -1,7 +1,7 @@
 import api from "./axios";
 
 export const askQuestion = async (data) => {
-  const response = await api.post("/query/ask", data);
+  const response = await api.post("/ask", data);
   return response.data;
 };
 
